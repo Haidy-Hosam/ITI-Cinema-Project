@@ -5,7 +5,6 @@ import { NavBar } from "../Componants/nav-bar/nav-bar";
 import { Footer } from "../Componants/footer/footer";
 import { Header } from "../Componants/header/header";
 import { Movielist } from "../Componants/movielist/movielist";
-';
 
 
 @Component({
