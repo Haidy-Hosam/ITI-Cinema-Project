@@ -1,0 +1,13 @@
+.container{
+    background-color: rgb(213, 211, 211);
+    padding: 30px;
+    margin-left:15px ;
+    margin-top: 15px;
+}
+.input-group{
+    margin: 15px;
+}
+.Now-Playing{
+margin-left: 15px;
+margin-top: 15px;
+}
