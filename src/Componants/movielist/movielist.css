@@ -28,3 +28,23 @@
   50%  { transform: scale(1.4); }
   100% { transform: scale(1); }
 }
+.card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 15px; /* اختياري - يدي شكل ناعم */
+}
+.card:hover {
+  transform: translateY(-10px); /* يطلع لفوق */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* ظل ناعم */
+}
+.rating-circle {
+  position: absolute;
+  top: 250px;
+  left: 10px;
+  background: #000;           /* خلفية سودا */
+  border-radius: 50%;         /* تخليها مدورة */
+  padding: 2px;               /* مساحة حوالين الدايرة */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5); /* ظل بسيط */
+}
