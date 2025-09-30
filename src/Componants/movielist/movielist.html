@@ -1,27 +1,26 @@
-
-<div class="row row-cols-1 row-cols-md-6 g-4 m-50  px-4 mt-3 ">
-    @for (movie of list_of_movies; track $index) {
-        <div class="col ">
-            <div class="card">
-            <img [src]="'https://image.tmdb.org/t/p/w500/'+ movie.poster_path" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{movie.title}}</h5>
-                <p class="film-date d-flex align-items-center justify-content-between">
-            <span>{{movie.release_date}}</span>
-
-            <!-- قلب  -->
-            <i class="bi"
-               [ngClass]="{
-                  'bi-heart-fill liked': favorites.includes(movie),
-                  'bi-heart': !favorites.includes(movie)
-               }"
-               [style.color]="favorites.includes(movie) ? '#160a74' : 'gray'"
-               style="cursor: pointer; font-size: 1.5rem;"
-               (click)="toggleFavorite(movie)">
-            </i>
-          </p>
-            </div>
-            </div>
-        </div>
-    }
+<div class="row row-cols-1 row-cols-md-6 g-4 m-50 px-4 mt-3">
+  <div class="col" *ngFor="let movie of movies; let i = index">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/details', movie.id]" style="text-decoration: none; color: inherit;">
+        <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+             class="card-img-top" alt="{{movie.title}}">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="film-date d-flex align-items-center justify-content-between">
+          <span>{{movie.release_date}}</span>
+          
+          <i class="bi"
+             [ngClass]="{
+                'bi-heart-fill liked': favorites.includes(movie),
+                'bi-heart': !favorites.includes(movie)
+             }"
+             [style.color]="favorites.includes(movie) ? '#160a74' : 'gray'"
+             style="cursor: pointer; font-size: 1.5rem;"
+             (click)="toggleFavorite(movie)">
+          </i>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
