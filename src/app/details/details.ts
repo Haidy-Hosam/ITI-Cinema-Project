@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { MovieService } from '../services/movie.service';
+import { MoviesService } from '../../services/movies-service';
 
 @Component({
   selector: 'app-details',
@@ -14,15 +14,23 @@ export class Details implements OnInit {
   movie: any;
   recommendations: any[] = [];
   favorites: any[] = [];
-  userRating: number = 0; // ⭐ user’s selected rating
+  userRating: number = 0;
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) {}
+  constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.movie = this.movieService.getMovieById(id);
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
 
-    this.recommendations = this.movieService.getMovies().filter((m: any) => m.id !== id);
+      // نجيب كل الأفلام من API
+      this.moviesService.getallMovies().subscribe((response: any) => {
+        const movies = response.results; // حسب صيغة الرد من TMDB
+        this.movie = movies.find((m: any) => m.id === id);
+        this.recommendations = movies.filter((m: any) => m.id !== id);
+        this.userRating = 0;
+        this.favorites = [];
+      });
+    });
   }
 
   toggleFavorite(movie: any) {
@@ -36,6 +44,5 @@ export class Details implements OnInit {
   setRating(star: number) {
     this.userRating = star;
     console.log(`User rated ${this.movie.title}: ${star} stars`);
-    // 🔹 Optional: send to backend with movieId & rating
   }
 }

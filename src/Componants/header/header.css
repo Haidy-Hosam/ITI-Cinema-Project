@@ -1,8 +1,11 @@
-.container{
-    background-color: rgb(213, 211, 211);
+.container {
+    color: aliceblue;
+    background-color: #283593;
     padding: 30px;
-    margin-left:15px ;
-    margin-top: 15px;
+    margin: 12px auto;
+    width: 95%;         
+    max-width: 1200px; 
+    border-radius: 10px;
 }
 .input-group{
     margin: 15px;
